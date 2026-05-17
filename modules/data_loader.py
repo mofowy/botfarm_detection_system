@@ -2,13 +2,6 @@ import pandas as pd
 
 
 def load_data(file):
-    """
-    Завантажує CSV-файл і перевіряє наявність обов'язкових стовпців.
-    Мінімально потрібні поля:
-    - account_id: ідентифікатор акаунта
-    - text: текст повідомлення
-    """
-
     data = pd.read_csv(file)
 
     required_columns = ["account_id", "text"]

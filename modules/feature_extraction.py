@@ -2,11 +2,6 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 
 
 def aggregate_texts_by_account(data):
-    """
-    Об'єднує всі повідомлення одного акаунта в один текст.
-    Це потрібно для аналізу акаунта як цілісного профілю.
-    """
-
     account_texts = (
         data.groupby("account_id")["clean_text"]
         .apply(lambda texts: " ".join(texts))
@@ -17,10 +12,6 @@ def aggregate_texts_by_account(data):
 
 
 def build_text_features(texts):
-    """
-    Формує TF-IDF ознаки для текстів акаунтів.
-    """
-
     vectorizer = TfidfVectorizer(
         max_features=1000,
         min_df=1,

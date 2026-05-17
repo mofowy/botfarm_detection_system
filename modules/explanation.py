@@ -1,7 +1,9 @@
-def explain_cluster(cluster_id):
-    """
-    Формує просте пояснення результату для акаунта.
-    """
+def explain_result(cluster_id, found_in_database=False, database_reason=""):
+    if found_in_database:
+        return (
+            "Акаунт знайдено в SQL-базі підозрілих акаунтів. "
+            f"Причина: {database_reason}"
+        )
 
     if cluster_id == -1:
         return (
@@ -15,10 +17,5 @@ def explain_cluster(cluster_id):
     )
 
 
-def mark_suspicious(cluster_id):
-    """
-    Позначає акаунт як потенційно підозрілий,
-    якщо він належить до знайденого кластера.
-    """
-
-    return cluster_id != -1
+def mark_suspicious(cluster_id, found_in_database=False):
+    return found_in_database or cluster_id != -1
